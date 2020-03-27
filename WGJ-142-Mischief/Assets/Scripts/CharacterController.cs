@@ -5,8 +5,9 @@ using UnityEngine;
 public class CharacterController : MonoBehaviour
 {
     private Rigidbody2D rb;
-
-    public float speed;
+    public const float DEFAULT_SPEED = 5;
+    public const float RUNNING_SPEED = DEFAULT_SPEED + 5;
+    public float speed = DEFAULT_SPEED;
 
 
     private void Awake()
@@ -35,6 +36,18 @@ public class CharacterController : MonoBehaviour
         {
             // Not moving
         }
+
+        //check if shift is pressed (shift is the key for running)
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        {
+            speed = RUNNING_SPEED;
+        }
+        else
+        {
+            speed = DEFAULT_SPEED;
+        }
+
+        System.Console.WriteLine("speed: " + speed);
 
         Vector2 velocity = new Vector2(horizontal, vertical);
         velocity.Normalize();

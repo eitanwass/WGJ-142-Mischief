@@ -4,21 +4,29 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
+    private Camera mainCam;
     private Rigidbody2D rb;
-    public const float DEFAULT_SPEED = 5;
-    public const float RUNNING_SPEED = DEFAULT_SPEED + 3;
-    public float speed = DEFAULT_SPEED;
+
+    public float walkingSpeed = 5;
+    public float runningSpeed = 8;
+
+    private float speed;
+
+
+    private Vector3 mousePosition;
 
 
     private void Awake()
     {
+        mainCam = Camera.main;
         rb = GetComponent<Rigidbody2D>();
     }
 
 
     private void Update()
     {
-
+        Vector2 mousePos = Input.mousePosition;
+        mousePosition = mainCam.ScreenToWorldPoint(new Vector2(mousePos.x, mousePos.y));
     }
 
     private void FixedUpdate()
@@ -39,15 +47,9 @@ public class CharacterController : MonoBehaviour
 
         //check if shift is pressed (shift is the key for running)
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-        {
-            speed = RUNNING_SPEED;
-        }
+            speed = runningSpeed;
         else
-        {
-            speed = DEFAULT_SPEED;
-        }
-
-        System.Console.WriteLine("speed: " + speed);
+            speed = walkingSpeed;
 
         Vector2 velocity = new Vector2(horizontal, vertical);
         velocity.Normalize();

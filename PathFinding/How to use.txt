@@ -1,0 +1,10 @@
+1) You need to create a PathFinder object: PathFinder pf = new PathFinder();
+
+2)	a. For getting optimal path use GetOptimalPath function: pf.GetOptimalPath(table, start_point, end_point);
+	   where table is the map (with 1 is blocked way and 0 is free way)
+
+	b. For using other algorithms use GetPathByAlgorithm function: pf.GetOptimalPath("Astar", table, start_point, end_point);
+
+	This functions will return a list of Point of the path
+
+3) to add a search algorithm go to the Algorithms directory and add a new class implementing ISearcher<Point>, then add it to the dictinary in PathFinder for using it in GetPathByAlgorithm function

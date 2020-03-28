@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,7 +12,7 @@ public class Zoom : MonoBehaviour
     private float startDistance;
     private float timeLeft = 0;
     private new Camera camera;
-    private bool zoomed;
+    public static bool zoomed;
     private Zoomable zoomOn;
 
     private void Start()
@@ -41,6 +41,9 @@ public class Zoom : MonoBehaviour
 
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
+                if (hit.transform.GetComponent<Zoomable>() == null) {
+                    return;
+                }
                 ZoomAt(hit.transform.GetComponent<Zoomable>(), 9f);
             }
         }

@@ -8,13 +8,13 @@ public class CameraMovement : MonoBehaviour
 
     public GameObject followObject;
 
-    public Vector3 offset;
+    public Vector3 offset = new Vector3(0, 0, -10);
 
-    public float smoothFollowSpeed = 2f;
+    public float smoothFollowSpeed = 3f;
 
-    public Vector3 currentMousePosition;
+    private Vector3 currentMousePosition;
 
-    public float cameraMovementRadius = 4.5f;
+    public float cameraMovementRadius = 2f;
 
 
 
@@ -32,8 +32,17 @@ public class CameraMovement : MonoBehaviour
 
     private void LateUpdate()
     {
-        Vector3 targetPosition = followObject.transform.position + offset;
+        Vector3 targetPosition = (followObject.transform.position + currentMousePosition) / 2f;
 
-        this.transform.position = Vector3.Lerp(transform.position, targetPosition, smoothFollowSpeed * Time.deltaTime);
+        // Check if target position is too far
+        if(Vector3.Distance(followObject.transform.position, targetPosition) > cameraMovementRadius)
+        {
+            Vector3 deltaVector = targetPosition - followObject.transform.position;
+            deltaVector.Normalize();
+            deltaVector *= cameraMovementRadius;
+            targetPosition = followObject.transform.position + deltaVector;
+        }
+
+        this.transform.position = Vector3.Lerp(transform.position, targetPosition + offset, smoothFollowSpeed * Time.deltaTime);
     }
 }

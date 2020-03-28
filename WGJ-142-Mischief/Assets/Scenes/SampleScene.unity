@@ -459,8 +459,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followObject: {fileID: 256162550}
   offset: {x: 0, y: 0, z: -10}
-  smoothFollowSpeed: 2
-  cameraMovementRadius: 4.5
+  smoothFollowSpeed: 3
+  cameraMovementRadius: 1
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0

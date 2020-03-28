@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
-    private Rigidbody2D rb;
+    static protected CharacterController s_PlayerInstance;
+    static public CharacterController PlayerInstance { get { return s_PlayerInstance; } }
+
+    public Rigidbody2D rb;
     public const float DEFAULT_SPEED = 5;
     public const float RUNNING_SPEED = DEFAULT_SPEED + 3;
     public float speed = DEFAULT_SPEED;

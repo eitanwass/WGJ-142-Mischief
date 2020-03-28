@@ -9,6 +9,7 @@ public class ZoomIntoHouse : MonoBehaviour
 {
     public float zoomPeriod;
     public bool canZoom = false;
+    public static string houseName;
     
     private Vector3 startPos;
     private Vector3 targetPos;
@@ -18,7 +19,6 @@ public class ZoomIntoHouse : MonoBehaviour
     private bool zoomed;
     private ZoomableHouse zoomOn;
 
-    // Start is called before the first frame update
     void Start()
     {
         camera = GetComponent<Camera>();
@@ -28,37 +28,45 @@ public class ZoomIntoHouse : MonoBehaviour
         zoomOn = null;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        // If not zoomed in to the neighborhood, don't do anything
         canZoom = Zoom.zoomed;
         if (!canZoom) {
-//            Debug.Log("can't zoom");
             return;
         }
+        
+        // If in the middle of zooming
         if (timeLeft > 0)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPos, startDistance * Time.deltaTime / zoomPeriod);
             
             timeLeft -= Time.deltaTime;
+            
+            // If done zooming
             if (timeLeft <= 0) {
                 Debug.Log("Going to loading screen");
                 SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex + 1);
             }
             
         }
+        
+        // If we just clicked on the neighborhood, we will begin zooming
         if (!zoomed && Input.GetMouseButtonUp(0))
         {
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
             
+            // If ray from camera to mouse hits a hosue on the way
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
                 zoomOn = hit.transform.GetComponent<ZoomableHouse>();
-                Debug.Log("zoomOn is not null:");
-                Debug.Log(zoomOn != null);
+                houseName = zoomOn.name;
+
+                // If there's a problem fetching the house, quit to avoid a crash
                 if (zoomOn == null) {
                     return;
                 }
+                
                 ZoomAt(9f);
             }
         }
@@ -68,9 +76,13 @@ public class ZoomIntoHouse : MonoBehaviour
     {
         if (zoomed)
             return;
+
         zoomed = true;
+        
         Vector3 zoomOnPos = zoomOn.transform.position;
+        
         targetPos = new Vector3(zoomOnPos.x, zoomOnPos.y, transform.position.z + (zoomOnPos.z - transform.position.z) * (zoomScale - 1) / zoomScale);
+        
         startDistance = Vector3.Distance(transform.position, targetPos);
         timeLeft = zoomPeriod;
     }

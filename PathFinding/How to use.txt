@@ -2,6 +2,7 @@
 
 2)	a. For getting optimal path use GetOptimalPath function: pf.GetOptimalPath(table, start_point, end_point);
 	   where table is the map (with 1 is blocked way and 0 is free way)
+	   required: the function expects to get a matrix of the screen where its sliced into a grid
 
 	b. For using other algorithms use GetPathByAlgorithm function: pf.GetOptimalPath("Astar", table, start_point, end_point);
 

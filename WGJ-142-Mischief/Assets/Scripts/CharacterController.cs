@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
-    private Rigidbody2D rb;
+
     static protected CharacterController s_PlayerInstance;
     static public CharacterController PlayerInstance { get { return s_PlayerInstance; } }
+
+    private Camera mainCam;
+    private Rigidbody2D rb;
+
     public float walkingSpeed = 5;
     public float runningSpeed = 8;
 
     private float speed;
+
+
+    private Vector3 mousePosition;
 
     [SerializeField]
     private ParticleSystem dustCloud;

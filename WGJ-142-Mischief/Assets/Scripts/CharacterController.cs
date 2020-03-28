@@ -45,9 +45,11 @@ public class CharacterController : MonoBehaviour
             // Not moving
         }
 
-        //check if shift is pressed (shift is the key for running)
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && StaminaBar.instance.getStamina() > 0)
+        {
             speed = runningSpeed;
+            StaminaBar.instance.UseStamina(1);
+        }
         else
             speed = walkingSpeed;
 

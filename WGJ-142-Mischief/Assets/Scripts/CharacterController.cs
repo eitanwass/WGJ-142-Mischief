@@ -74,6 +74,7 @@ public class CharacterController : MonoBehaviour
 
     public void StartDustParticles()
     {
+        Debug.Log(dustCloud.isPlaying + " " + dustCloud.ToString());
         if (!dustCloud.isPlaying)
             dustCloud.Play();
     }

@@ -7,6 +7,9 @@ public class CharacterController : MonoBehaviour
     static protected CharacterController s_PlayerInstance;
     static public CharacterController PlayerInstance { get { return s_PlayerInstance; } }
 
+    [SerializeField]
+    private ParticleSystem dustCloud;
+
     public Rigidbody2D rb;
     public const float DEFAULT_SPEED = 5;
     public const float RUNNING_SPEED = DEFAULT_SPEED + 3;
@@ -19,10 +22,10 @@ public class CharacterController : MonoBehaviour
     }
 
 
-    private void Update()
+    /*private void Update()
     {
-
-    }
+        
+    }*/
 
     private void FixedUpdate()
     {
@@ -56,7 +59,28 @@ public class CharacterController : MonoBehaviour
         velocity.Normalize();
         velocity *= speed;
 
+        Debug.Log(velocity.ToString());
+        if (velocity.x != 0 || velocity.y != 0)
+        {
+            StartDustParticles();
+        }
+        else
+        {
+            StopDustParticles();
+        }
+
         rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
+    }
+
+    public void StartDustParticles()
+    {
+        if (!dustCloud.isPlaying)
+            dustCloud.Play();
+    }
+
+    public void StopDustParticles()
+    {
+        dustCloud.Stop();
     }
 
 

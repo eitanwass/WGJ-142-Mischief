@@ -130,11 +130,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 256162554}
-  - component: {fileID: 256162557}
   - component: {fileID: 256162555}
   - component: {fileID: 256162552}
   - component: {fileID: 256162553}
   - component: {fileID: 256162551}
+  - component: {fileID: 256162556}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2589,7 +2589,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &256162557
+--- !u!114 &256162556
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2598,11 +2598,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 256162550}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7d3ffd371857ca4c892f5a453358b11, type: 3}
+  m_Script: {fileID: 11500000, guid: 250c1388af8daa6419d256febc8e87dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dustCloud: {fileID: 5321446536810279172, guid: 436533b30af83f44c8790980c922c95f,
+  dustCloud: {fileID: 5321446536810279169, guid: 436533b30af83f44c8790980c922c95f,
     type: 3}
+  rb: {fileID: 256162555}
+  speed: 5
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

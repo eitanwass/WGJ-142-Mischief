@@ -1,12 +1,10 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
+
 
 public class StaminaBar : MonoBehaviour
 {
-
     public Slider staminaBar;
 
     private int maxStamina = 100;
@@ -17,12 +15,12 @@ public class StaminaBar : MonoBehaviour
 
     public static StaminaBar instance;
 
+
     private void Awake()
     {
         instance = this;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         currentStamina = maxStamina;

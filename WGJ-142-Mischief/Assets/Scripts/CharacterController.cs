@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
+    private Rigidbody2D rb;
     static protected CharacterController s_PlayerInstance;
     static public CharacterController PlayerInstance { get { return s_PlayerInstance; } }
+    public float walkingSpeed = 5;
+    public float runningSpeed = 8;
+
+    private float speed;
 
     [SerializeField]
     private ParticleSystem dustCloud;
-
-    public Rigidbody2D rb;
-    public const float DEFAULT_SPEED = 5;
-    public const float RUNNING_SPEED = DEFAULT_SPEED + 3;
-    public float speed = DEFAULT_SPEED;
 
 
     private void Awake()
@@ -22,10 +22,11 @@ public class CharacterController : MonoBehaviour
     }
 
 
-    /*private void Update()
+    private void Update()
     {
-        
-    }*/
+        Vector2 mousePos = Input.mousePosition;
+        mousePosition = mainCam.ScreenToWorldPoint(new Vector2(mousePos.x, mousePos.y));
+    }
 
     private void FixedUpdate()
     {
@@ -43,17 +44,13 @@ public class CharacterController : MonoBehaviour
             // Not moving
         }
 
-        //check if shift is pressed (shift is the key for running)
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && StaminaBar.instance.getStamina() > 0)
         {
-            speed = RUNNING_SPEED;
+            speed = runningSpeed;
+            StaminaBar.instance.UseStamina(1);
         }
         else
-        {
-            speed = DEFAULT_SPEED;
-        }
-
-        System.Console.WriteLine("speed: " + speed);
+            speed = walkingSpeed;
 
         Vector2 velocity = new Vector2(horizontal, vertical);
         velocity.Normalize();

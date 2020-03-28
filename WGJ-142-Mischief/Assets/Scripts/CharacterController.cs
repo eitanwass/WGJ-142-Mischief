@@ -20,7 +20,7 @@ public class CharacterController : MonoBehaviour
     private Vector3 mousePosition;
 
     [SerializeField]
-    private ParticleSystem dustCloud;
+    public ParticleSystem dustCloud;
 
 
     private void Awake()
@@ -31,8 +31,8 @@ public class CharacterController : MonoBehaviour
 
     private void Update()
     {
-        Vector2 mousePos = Input.mousePosition;
-        mousePosition = mainCam.ScreenToWorldPoint(new Vector2(mousePos.x, mousePos.y));
+        if (mainCam)
+            mousePosition = mainCam.ScreenToWorldPoint(Input.mousePosition);
     }
 
     private void FixedUpdate()
@@ -63,7 +63,6 @@ public class CharacterController : MonoBehaviour
         velocity.Normalize();
         velocity *= speed;
 
-        Debug.Log(velocity.ToString());
         if (velocity.x != 0 || velocity.y != 0)
         {
             StartDustParticles();
@@ -78,14 +77,24 @@ public class CharacterController : MonoBehaviour
 
     public void StartDustParticles()
     {
-        Debug.Log(dustCloud.isPlaying + " " + dustCloud.ToString());
         if (!dustCloud.isPlaying)
             dustCloud.Play();
+        else
+        {
+            StopCoroutine("StopParticle");
+        }
     }
 
     public void StopDustParticles()
     {
-        dustCloud.Stop();
+        StartCoroutine("StopParticle");
+        
+    }
+
+    IEnumerator StopParticle()
+    {
+        yield return new WaitForSeconds(1f);
+        dustCloud.Stop(false, ParticleSystemStopBehavior.StopEmitting);
     }
 
 

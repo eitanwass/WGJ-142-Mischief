@@ -40,7 +40,7 @@ public class Zoom : MonoBehaviour
         {
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out RaycastHit hit))
+            if (Physics.Raycast(ray, out RaycastHit hit) && hit.transform.GetComponent<Zoomable>() != null)
             {
                 if (hit.transform.GetComponent<Zoomable>() == null) {
                     return;

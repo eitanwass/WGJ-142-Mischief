@@ -9,7 +9,6 @@ public class Zoomable : MonoBehaviour
     private InfoShow[] children;
     void Start()
     {
-        gameObject.tag = "Zoomable";
         children = GetComponentsInChildren<InfoShow>();
         SetActive(false);
     }

@@ -69,4 +69,9 @@ public class CharacterController : MonoBehaviour
         bool right = contactPoint.x > center.x;
         bool top = contactPoint.y > center.y;
     }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        Grid.Instance.CreateGrid();
+    }
 }

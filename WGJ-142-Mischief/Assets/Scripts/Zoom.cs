@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,13 +6,14 @@ using UnityEngine;
 public class Zoom : MonoBehaviour
 {
     public float zoomPeriod;
+    public static string neighborhoodName;
 
     private Vector3 startPos;
     private Vector3 targetPos;
     private float startDistance;
     private float timeLeft = 0;
     private new Camera camera;
-    private bool zoomed;
+    public static bool zoomed;
     private Zoomable zoomOn;
 
     private void Start()
@@ -41,6 +42,9 @@ public class Zoom : MonoBehaviour
 
             if (Physics.Raycast(ray, out RaycastHit hit) && hit.transform.GetComponent<Zoomable>() != null)
             {
+                if (hit.transform.GetComponent<Zoomable>() == null) {
+                    return;
+                }
                 ZoomAt(hit.transform.GetComponent<Zoomable>(), 9f);
             }
         }
@@ -53,6 +57,7 @@ public class Zoom : MonoBehaviour
         if (zoomed)
             return;
         this.zoomOn = zoomOn;
+        neighborhoodName = zoomOn.name;
         zoomed = true;
         Vector3 zoomOnPos = zoomOn.transform.position;
         targetPos = new Vector3(zoomOnPos.x, zoomOnPos.y, transform.position.z + (zoomOnPos.z - transform.position.z) * (zoomScale - 1) / zoomScale);

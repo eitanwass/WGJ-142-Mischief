@@ -7,8 +7,8 @@ public class CharacterController : MonoBehaviour
     private Camera mainCam;
     private Rigidbody2D rb;
 
-    public float walkingSpeed = 5;
-    public float runningSpeed = 8;
+    public float walkingSpeed = 3;
+    public float runningSpeed = 5;
 
     private float speed;
 
@@ -40,19 +40,21 @@ public class CharacterController : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
-        if(horizontal == 0 && vertical == 0)
+        if (horizontal == 0 && vertical == 0)
         {
             // Not moving
         }
 
-        if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && StaminaBar.instance.getStamina() > 0)
-        {
-            speed = runningSpeed;
-            StaminaBar.instance.UseStamina(1);
-        }
         else
-            speed = walkingSpeed;
-
+        {
+            if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && StaminaBar.instance.getStamina() > 0)
+            {
+                speed = runningSpeed;
+                StaminaBar.instance.UseStamina(1);
+            }
+            else
+                speed = walkingSpeed;
+        }
         Vector2 velocity = new Vector2(horizontal, vertical);
         velocity.Normalize();
         velocity *= speed;

@@ -9,6 +9,6 @@ public class Door : Interactble
     // Open/close a door.
     public override void Interact()
     {
-        door.SetActive(!door.active);
+        door.SetActive(!door.activeSelf);
     }
 }

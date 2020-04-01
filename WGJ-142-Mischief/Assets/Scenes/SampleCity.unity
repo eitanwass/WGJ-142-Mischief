@@ -907,9 +907,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 208330103}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b5ee37daca164165b0d5382a4e254ed, type: 3}
+  m_Script: {fileID: 11500000, guid: d84619c3caf59b04b8d807f667f4e09c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoomLevel: 2
+  scene: LoadingScreen
 --- !u!1 &210650481
 GameObject:
   m_ObjectHideFlags: 0
@@ -5035,8 +5037,8 @@ GameObject:
   - component: {fileID: 677519053}
   - component: {fileID: 677519056}
   - component: {fileID: 677519054}
-  - component: {fileID: 677519057}
   - component: {fileID: 677519055}
+  - component: {fileID: 677519057}
   m_Layer: 0
   m_Name: House (2)
   m_TagString: Untagged
@@ -5144,9 +5146,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 677519052}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b5ee37daca164165b0d5382a4e254ed, type: 3}
+  m_Script: {fileID: 11500000, guid: d84619c3caf59b04b8d807f667f4e09c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoomLevel: 2
+  scene: LoadingScreen
 --- !u!1 &733031776
 GameObject:
   m_ObjectHideFlags: 0
@@ -5205,8 +5209,8 @@ GameObject:
   - component: {fileID: 839515956}
   - component: {fileID: 839515959}
   - component: {fileID: 839515957}
-  - component: {fileID: 839515960}
   - component: {fileID: 839515958}
+  - component: {fileID: 839515960}
   m_Layer: 0
   m_Name: House (1)
   m_TagString: Untagged
@@ -5314,9 +5318,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 839515955}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b5ee37daca164165b0d5382a4e254ed, type: 3}
+  m_Script: {fileID: 11500000, guid: d84619c3caf59b04b8d807f667f4e09c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoomLevel: 2
+  scene: LoadingScreen
 --- !u!1 &872294278
 GameObject:
   m_ObjectHideFlags: 0
@@ -5647,9 +5653,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 899884420}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b5ee37daca164165b0d5382a4e254ed, type: 3}
+  m_Script: {fileID: 11500000, guid: d84619c3caf59b04b8d807f667f4e09c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoomLevel: 2
+  scene: LoadingScreen
 --- !u!1 &951675850
 GameObject:
   m_ObjectHideFlags: 0
@@ -5698,6 +5706,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d84619c3caf59b04b8d807f667f4e09c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoomLevel: 1
+  scene: 
 --- !u!65 &951675853
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6255,9 +6265,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1151371287}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b5ee37daca164165b0d5382a4e254ed, type: 3}
+  m_Script: {fileID: 11500000, guid: d84619c3caf59b04b8d807f667f4e09c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoomLevel: 2
+  scene: LoadingScreen
 --- !u!1 &1162601343
 GameObject:
   m_ObjectHideFlags: 0
@@ -6378,9 +6390,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1162601343}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b5ee37daca164165b0d5382a4e254ed, type: 3}
+  m_Script: {fileID: 11500000, guid: d84619c3caf59b04b8d807f667f4e09c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoomLevel: 2
+  scene: LoadingScreen
 --- !u!1 &1271033064
 GameObject:
   m_ObjectHideFlags: 0
@@ -6492,6 +6506,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d84619c3caf59b04b8d807f667f4e09c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoomLevel: 1
+  scene: 
 --- !u!1 &1296142128
 GameObject:
   m_ObjectHideFlags: 0
@@ -6750,6 +6766,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d84619c3caf59b04b8d807f667f4e09c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoomLevel: 1
+  scene: 
 --- !u!65 &1313262129
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6933,9 +6951,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1379482050}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b5ee37daca164165b0d5382a4e254ed, type: 3}
+  m_Script: {fileID: 11500000, guid: d84619c3caf59b04b8d807f667f4e09c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoomLevel: 2
+  scene: LoadingScreen
 --- !u!1 &1399923972
 GameObject:
   m_ObjectHideFlags: 0
@@ -8161,9 +8181,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1534172375}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b5ee37daca164165b0d5382a4e254ed, type: 3}
+  m_Script: {fileID: 11500000, guid: d84619c3caf59b04b8d807f667f4e09c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoomLevel: 2
+  scene: LoadingScreen
 --- !u!1 &1536640790
 GameObject:
   m_ObjectHideFlags: 0
@@ -8576,9 +8598,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1593722852}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b5ee37daca164165b0d5382a4e254ed, type: 3}
+  m_Script: {fileID: 11500000, guid: d84619c3caf59b04b8d807f667f4e09c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoomLevel: 2
+  scene: LoadingScreen
 --- !u!1 &1663795780
 GameObject:
   m_ObjectHideFlags: 0
@@ -8627,6 +8651,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d84619c3caf59b04b8d807f667f4e09c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoomLevel: 1
+  scene: 
 --- !u!65 &1663795783
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9020,9 +9046,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1725000748}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b5ee37daca164165b0d5382a4e254ed, type: 3}
+  m_Script: {fileID: 11500000, guid: d84619c3caf59b04b8d807f667f4e09c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoomLevel: 2
+  scene: LoadingScreen
 --- !u!1 &1851310933
 GameObject:
   m_ObjectHideFlags: 0
@@ -9034,8 +9062,8 @@ GameObject:
   - component: {fileID: 1851310934}
   - component: {fileID: 1851310935}
   - component: {fileID: 1851310936}
-  - component: {fileID: 1851310938}
   - component: {fileID: 1851310937}
+  - component: {fileID: 1851310938}
   m_Layer: 0
   m_Name: House
   m_TagString: Untagged
@@ -9143,9 +9171,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1851310933}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b5ee37daca164165b0d5382a4e254ed, type: 3}
+  m_Script: {fileID: 11500000, guid: d84619c3caf59b04b8d807f667f4e09c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoomLevel: 2
+  scene: LoadingScreen
 --- !u!1 &1930241404
 GameObject:
   m_ObjectHideFlags: 0
@@ -9368,7 +9398,6 @@ GameObject:
   - component: {fileID: 2014772240}
   - component: {fileID: 2014772239}
   - component: {fileID: 2014772242}
-  - component: {fileID: 2014772243}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -9454,20 +9483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomPeriod: 1
---- !u!114 &2014772243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2014772238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bc01c0a0035e45de861f302c9f31ee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zoomPeriod: 1
-  canZoom: 1
+  zoomScale: 4
 --- !u!1 &2034718752
 GameObject:
   m_ObjectHideFlags: 0
@@ -9670,6 +9686,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 2125420125}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b5ee37daca164165b0d5382a4e254ed, type: 3}
+  m_Script: {fileID: 11500000, guid: d84619c3caf59b04b8d807f667f4e09c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoomLevel: 2
+  scene: LoadingScreen

@@ -67,5 +67,15 @@ public class EnemyPathfinder : MonoBehaviour
             currentWaypoint++;
         }
 
+        // Turning left and right
+        float scaleX = transform.localScale.x, scaleY = transform.localScale.y;
+        if (direction.x > 0)
+        {
+            transform.localScale = new Vector3(Mathf.Abs(scaleX), scaleY);
+        }
+        else
+        {
+            transform.localScale = new Vector3(-Mathf.Abs(scaleX), scaleY);
+        }
     }
 }

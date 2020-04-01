@@ -10,8 +10,19 @@ public enum AwarenessState
     AWARE
 }
 
+public abstract class EnemyAI : MonoBehaviour
+{
+    protected GameObject target = null;
+    protected AwarenessState awarenessState = AwarenessState.UNAWARE;
 
-public class EnemyAI : MonoBehaviour
+    protected float visionConeAngle = 30f;
+    protected float visionConeLength = 7.5f;
+
+    //functions
+    abstract protected bool EnemyInVision();
+}
+
+/*public class EnemyAI : MonoBehaviour
 {
     public GameObject target;
 
@@ -22,31 +33,7 @@ public class EnemyAI : MonoBehaviour
 
     public float visionConeLength = 7.5f;
 
-
-    private void Update()
-    {
-        Vector2 direction = target.transform.position - this.transform.position;
-
-        float angle = Vector2.Angle(transform.right, direction);
-
-        if(angle <= visionConeAngle)
-        {
-            float distance = Vector2.Distance(this.transform.position, target.transform.position);
-
-            if(distance <= visionConeLength)
-            {
-                RaycastHit2D hit = Physics2D.Raycast(this.transform.position, direction, visionConeLength);
-
-                if (hit.collider != null)
-                {
-                    Debug.DrawLine(transform.position, hit.point);
-
-                    if (hit.collider.CompareTag("Player"))
-                    {
-                        Debug.Log("Player in vision");
-                    }
-                }
-            }
-        }
-    }
+    //functions
+    virtual protected bool EnemyInVision();
 }
+*/

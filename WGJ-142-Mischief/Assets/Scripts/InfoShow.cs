@@ -9,7 +9,7 @@ public class InfoShow : MonoBehaviour
 
     private GameObject info;
 
-    private void Start()
+    private void Awake()
     {
         info = transform.GetChild(0).gameObject;
         info.SetActive(false);

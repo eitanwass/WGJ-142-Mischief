@@ -1,19 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Camera))]
 public class Zoom : MonoBehaviour
 {
+    public const int startLevel = 0;
+    public const int neighborhoodLevel = 1;
+    public const int houseLevel = 2;
+
     public float zoomPeriod;
-    public static string neighborhoodName;
+    public float zoomScale;
 
     private Vector3 startPos;
     private Vector3 targetPos;
     private float startDistance;
     private float timeLeft = 0;
     private new Camera camera;
-    public static bool zoomed;
+    private int zoomLevel;
     private Zoomable zoomOn;
 
     private void Start()
@@ -23,6 +28,7 @@ public class Zoom : MonoBehaviour
             Debug.LogWarning("The camera should be perspective mode for the zoom to work");
         startPos = transform.position;
         zoomOn = null;
+        zoomLevel = 0;
     }
 
     private void Update()
@@ -34,43 +40,53 @@ public class Zoom : MonoBehaviour
             timeLeft -= Time.deltaTime;
 
             if (timeLeft < 0 && zoomOn != null)
+            {
                 zoomOn.SetActive(true);
+                if (zoomOn.scene != "")
+                {
+                    SceneManager.LoadScene(zoomOn.scene);
+                }
+            }
         }
-        if (!zoomed && Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0))
         {
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out RaycastHit hit) && hit.transform.GetComponent<Zoomable>() != null)
+            RaycastHit[] hit = Physics.RaycastAll(ray);
+
+            foreach (var target in hit)
             {
-                if (hit.transform.GetComponent<Zoomable>() == null) {
-                    return;
+                Zoomable zoomAtObj = target.transform.GetComponent<Zoomable>();
+                if (zoomLevel + 1 == zoomAtObj.zoomLevel)
+                {
+                    ZoomAt(zoomAtObj, zoomScale);
+                    break;
                 }
-                ZoomAt(hit.transform.GetComponent<Zoomable>(), 9f);
             }
         }
-        if (zoomed && Input.GetKeyUp(KeyCode.Escape))
+        if (zoomLevel > 0 && Input.GetKeyUp(KeyCode.Escape))
             UnZoom();
     }
 
-    public void ZoomAt(Zoomable zoomOn, float zoomScale)
+    public void ZoomAt(Zoomable zoomOn, float scale)
     {
-        if (zoomed)
+        if (zoomLevel == houseLevel)
             return;
         this.zoomOn = zoomOn;
-        neighborhoodName = zoomOn.name;
-        zoomed = true;
+        zoomLevel++;
         Vector3 zoomOnPos = zoomOn.transform.position;
-        targetPos = new Vector3(zoomOnPos.x, zoomOnPos.y, transform.position.z + (zoomOnPos.z - transform.position.z) * (zoomScale - 1) / zoomScale);
+        targetPos = new Vector3(zoomOnPos.x, zoomOnPos.y, transform.position.z + (zoomOnPos.z - transform.position.z) * (scale - 1) / scale);
         startDistance = Vector3.Distance(transform.position, targetPos);
         timeLeft = zoomPeriod;
     }
 
-    public void ZoomAt(Vector3 position, float zoomScale)
+
+    public void ZoomAt(Vector3 position, float scale)
     {
-        if (zoomed)
+        if (zoomLevel == houseLevel)
             return;
-        zoomed = true;
-        targetPos = new Vector3(position.x, position.y, transform.position.z + (position.z - transform.position.z) * (zoomScale - 1) / zoomScale);
+        zoomLevel++;
+        targetPos = new Vector3(position.x, position.y, transform.position.z + (position.z - transform.position.z) * (scale - 1) / scale);
         startDistance = Vector3.Distance(transform.position, targetPos);
         timeLeft = zoomPeriod;
     }
@@ -82,7 +98,7 @@ public class Zoom : MonoBehaviour
             zoomOn.SetActive(false);
             zoomOn = null;
         }
-        zoomed = false;
+        zoomLevel = startLevel;
         targetPos = startPos;
         startDistance = Vector3.Distance(transform.position, targetPos);
         timeLeft = zoomPeriod;

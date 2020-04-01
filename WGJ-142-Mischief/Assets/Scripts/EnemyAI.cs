@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,30 +11,67 @@ public enum AwarenessState
     AWARE
 }
 
+[RequireComponent(typeof(EnemyPathfinder))]
 public abstract class EnemyAI : MonoBehaviour
 {
     protected GameObject target = null;
+    protected EnemyPathfinder enemyPathfinder;
+
     protected AwarenessState awarenessState = AwarenessState.UNAWARE;
 
-    protected float visionConeAngle = 30f;
+    protected float visionConeAngle = 60f;
     protected float visionConeLength = 7.5f;
 
+    public bool isFollowingPlayer = false;
+
+
+    protected void Awake()
+    {
+        enemyPathfinder = GetComponent<EnemyPathfinder>();
+        enemyPathfinder.OnPathCompleteEvent += OnPathCompleteEvent();
+    }
+
+    protected EventHandler OnPathCompleteEvent()
+    {
+        isFollowingPlayer = false;
+        return null;
+    }
+
     //functions
-    abstract protected bool EnemyInVision();
+    protected bool EnemyInVision()
+    {
+        Vector2 direction = target.transform.position - this.transform.position;
+
+        float angle = Vector2.Angle(transform.right, direction);
+
+        if (angle <= this.visionConeAngle)
+        {
+            if (IsEnemyInRange())
+            {
+                RaycastHit2D hit = Physics2D.Raycast(this.transform.position, direction, visionConeLength);
+
+                if (hit.collider != null)
+                {
+                    Debug.DrawLine(transform.position, hit.point);
+
+                    if (hit.collider.CompareTag("Player"))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        Debug.Log(hit.collider.name);
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    protected bool IsEnemyInRange()
+    {
+        float distance = Vector2.Distance(this.transform.position, target.transform.position);
+
+        return (distance <= this.visionConeLength);
+    }
 }
-
-/*public class EnemyAI : MonoBehaviour
-{
-    public GameObject target;
-
-
-    public AwarenessState awarenessState = AwarenessState.UNAWARE;
-
-    public float visionConeAngle = 30f;
-
-    public float visionConeLength = 7.5f;
-
-    //functions
-    virtual protected bool EnemyInVision();
-}
-*/

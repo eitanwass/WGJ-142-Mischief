@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using System;
 
 /// <summary>
 /// Makes the enemy find a way and move.
@@ -10,9 +11,10 @@ using Pathfinding;
 [RequireComponent(typeof(Seeker))]
 public class EnemyPathfinder : MonoBehaviour
 {
+    public event EventHandler OnPathCompleteEvent;
 
-    public float speed;
-    public float nextWaypointDistance = 3f;
+    public float speed = 100f;
+    public float nextWaypointDistance = 0.5f;
 
     private Path path;
     int currentWaypoint = 0;
@@ -31,10 +33,11 @@ public class EnemyPathfinder : MonoBehaviour
     /// </summary>
     /// <param name="pos">The position to move to</param>
     /// <param name="scan">Whether we are rescanning the floor before the movement</param>
-    public void GoTo(Vector3 pos, bool scan)
+    public void GoTo(Vector3 pos, bool scan = true)
     {
         if (scan)
             AstarPath.active.Scan();
+        Debug.Log("Moving To Player: " + pos.ToString());
         seeker.StartPath(rb.position, pos, OnPathComplete);
     }
 
@@ -53,7 +56,10 @@ public class EnemyPathfinder : MonoBehaviour
             return;
 
         if (currentWaypoint >= path.vectorPath.Count)
+        {
+            OnPathCompleteEvent?.Invoke(this, new EventArgs());
             return;
+        }
 
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
         Vector2 force = direction * speed * Time.deltaTime;

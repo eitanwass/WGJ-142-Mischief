@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
+/// <summary>
+/// Makes the enemy find a way and move.
+/// </summary>
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Seeker))]
 public class EnemyPathfinder : MonoBehaviour
 {
 
@@ -21,6 +26,11 @@ public class EnemyPathfinder : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    /// <summary>
+    /// Takes the enemy to a position.
+    /// </summary>
+    /// <param name="pos">The position to move to</param>
+    /// <param name="scan">Whether we are rescanning the floor before the movement</param>
     public void GoTo(Vector3 pos, bool scan)
     {
         if (scan)

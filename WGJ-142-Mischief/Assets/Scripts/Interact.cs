@@ -26,6 +26,15 @@ public class Interact : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (obj == null && collision.GetComponent<Interactble>() != null)
+        {
+            obj = collision.GetComponent<Interactble>();
+            text.text = "Press " + useKey + " to interact with " + obj.name;
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.GetComponent<Interactble>() == obj)

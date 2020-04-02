@@ -273,8 +273,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 108.6, y: -137.8}
-  m_SizeDelta: {x: 602.1, y: 105.7}
+  m_AnchoredPosition: {x: 53.374996, y: -71.415}
+  m_SizeDelta: {x: 340.25, y: 58.73}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &519420028
 GameObject:
@@ -393,8 +393,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -312, y: -133.16}
-  m_SizeDelta: {x: 212, y: 203.69}
+  m_AnchoredPosition: {x: -173.4, y: -64.75}
+  m_SizeDelta: {x: 126.4, y: 121.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &627889963
 MonoBehaviour:
@@ -414,7 +414,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0e800907219d74aff9f55c0fc1d2e204, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fb4fe0f57d7f6434ca1de88e9860734a, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -651,7 +651,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.89, y: 0.02}
   m_AnchorMax: {x: 0.99, y: 0.09}
-  m_AnchoredPosition: {x: 14.920013, y: -1.2400208}
+  m_AnchoredPosition: {x: -7, y: 10.869995}
   m_SizeDelta: {x: -29.84, y: -2.48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1457870510
@@ -780,7 +780,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -364, y: 219.1}
+  m_AnchoredPosition: {x: -159, y: 97}
   m_SizeDelta: {x: 103.8, y: 29.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1459415616
@@ -916,8 +916,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1, y: -185.8}
-  m_SizeDelta: {x: 2, y: -239.4}
+  m_AnchoredPosition: {x: 1, y: -107.5}
+  m_SizeDelta: {x: 0, y: -120.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1559226077
 MonoBehaviour:
@@ -1066,6 +1066,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   santaText: {fileID: 455253434}
   okButton: {fileID: 924868407}
+  arrIndex: 0000000000000000
 --- !u!114 &1816896247
 MonoBehaviour:
   m_ObjectHideFlags: 0

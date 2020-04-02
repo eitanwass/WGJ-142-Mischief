@@ -15,6 +15,10 @@ public class SantaTalkingScript : MonoBehaviour
     private float animateDelay = 0.00000000001f;
     private float totalPixelsUp = 10f;
     private float totalPixelsDown = 50f;
+
+    private static LinkedList<string> santaTextList; // = new LinkedList<string>(santaTextArr);
+    private static LinkedListNode<string> santaTextNode; // = santaTextList.First;
+    public int[] arrIndex = new int[] {0, 0};
     
     void Start() {
         // Clear text
@@ -31,7 +35,7 @@ public class SantaTalkingScript : MonoBehaviour
     }
     
     public void TextChange() {
-        string text = SantaText.santaTextNode.Value;
+        string text = SantaText.santaTextArr[arrIndex[0], arrIndex[1]];
         
         // No more Santa text to show for now. Hide the Santa canvas.
         if (text == null) {
@@ -44,9 +48,28 @@ public class SantaTalkingScript : MonoBehaviour
         }
         
         // Point to the next Santa text for later.
-        if (SantaText.santaTextNode.Next != null) {
-            SantaText.santaTextNode = SantaText.santaTextNode.Next;
+        // if (santaTextNode.Next != null) {
+        //     santaTextNode = santaTextNode.Next;
+        // }
+        /*
+        if (arrIndex[1] < SantaText.santaTextArr.GetLength(0) - 1) {
+            arrIndex[1] ++;
         }
+        else {
+            arrIndex[0] ++;
+            arrIndex[1] = 0;
+        }*/
+        if (SantaText.santaTextArr[arrIndex[0], arrIndex[1]] != "") {
+            arrIndex[1] ++;
+            Debug.Log("don't hide1");
+        }
+        else {
+            Debug.Log("hide1");
+            arrIndex[0] ++;
+            arrIndex[1] = 0;
+            HideSantaCanvas();
+        }
+        Debug.Log("done1");
     }
     
     void HideSantaCanvas() {
@@ -116,6 +139,7 @@ public class SantaTalkingScript : MonoBehaviour
     }
     
     public void ShowSantaText() {
+        Debug.Log("showing text");
         // Activate canvas
         transform.gameObject.SetActive(true);
         
@@ -154,13 +178,30 @@ public class SantaTalkingScript : MonoBehaviour
             yield return new WaitForSeconds(animateDelay);
         }
         
-        // Get and show text
-        string text = SantaText.santaTextNode.Value;
+        // Get text
+        // string[] arr = SantaText.santaTextArr[0];
+        // santaTextList = new LinkedList<string>(arr);
+        // arrIndex = new int[] {0, 0};
+        // string text = santaTextNode.Value;
+        string text = SantaText.santaTextArr[arrIndex[0], arrIndex[1]];
+
+        // Show text
         StartCoroutine(ShowText(text));
         
         // Point to the next Santa text for later.
-        if (SantaText.santaTextNode.Next != null) {
-            SantaText.santaTextNode = SantaText.santaTextNode.Next;
+        // if (santaTextNode.Next != null) {
+        //     santaTextNode = santaTextNode.Next;
+        // }
+        if (SantaText.santaTextArr[arrIndex[0], arrIndex[1]] != "") {
+            arrIndex[1] ++;
+            Debug.Log("don't hide");
         }
+        else {
+            Debug.Log("hide");
+            arrIndex[0] ++;
+            arrIndex[1] = 0;
+            HideSantaCanvas();
+        }
+        Debug.Log("done");
     }
 }

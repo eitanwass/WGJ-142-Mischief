@@ -11,6 +11,11 @@ public class Stairs : MonoBehaviour
 
     private bool moved;
 
+    private void Start()
+    {
+        floor1.SetActive(true);
+        floor2.SetActive(false);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision == stairs)

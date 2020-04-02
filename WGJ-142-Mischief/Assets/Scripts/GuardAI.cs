@@ -23,10 +23,9 @@ public class GuardAI : EnemyAI
 
     IEnumerator GoToPlayer()
     {
-        Debug.Log("Started coroutine");
         while (IsEnemyInRange())
         {
-            enemyPathfinder.GoTo(target.transform.position, !isFollowingPlayer);
+            enemyPathfinder.GoTo(target.transform.position);
             yield return new WaitForSecondsRealtime(1f);
         }
         isFollowingPlayer = false;

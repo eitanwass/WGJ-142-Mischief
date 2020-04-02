@@ -31,7 +31,8 @@ public class CharacterController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        HandleMovement();
+        if (!PauseMenu.isPaused)
+            HandleMovement();
     }
 
 

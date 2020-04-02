@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Pathfinding;
 using System;
 
@@ -11,7 +12,7 @@ using System;
 [RequireComponent(typeof(Seeker))]
 public class EnemyPathfinder : MonoBehaviour
 {
-    public event EventHandler OnPathCompleteEvent;
+    public UnityEvent OnPathCompleteEvent = new UnityEvent();
 
     public float speed = 100f;
     public float nextWaypointDistance = 0.5f;
@@ -37,7 +38,6 @@ public class EnemyPathfinder : MonoBehaviour
     {
         if (scan)
             AstarPath.active.Scan();
-        Debug.Log("Moving To Player: " + pos.ToString());
         seeker.StartPath(rb.position, pos, OnPathComplete);
     }
 
@@ -60,7 +60,7 @@ public class EnemyPathfinder : MonoBehaviour
 
         if (currentWaypoint >= path.vectorPath.Count)
         {
-            OnPathCompleteEvent?.Invoke(this, new EventArgs());
+            OnPathCompleteEvent.Invoke();
             return;
         }
 

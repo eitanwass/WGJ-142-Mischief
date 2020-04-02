@@ -28,13 +28,12 @@ public abstract class EnemyAI : MonoBehaviour
     protected void Awake()
     {
         enemyPathfinder = GetComponent<EnemyPathfinder>();
-        enemyPathfinder.OnPathCompleteEvent += OnPathCompleteEvent();
+        enemyPathfinder.OnPathCompleteEvent.AddListener(OnPathCompleteEvent);
     }
 
-    protected EventHandler OnPathCompleteEvent()
+    protected void OnPathCompleteEvent()
     {
         isFollowingPlayer = false;
-        return null;
     }
 
     //functions

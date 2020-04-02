@@ -62,13 +62,13 @@ public class CharacterController : MonoBehaviour
         rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
     }
 
-
+    /*
     private void OnCollisionEnter2D(Collision2D collision)
-    { 
+    {
         Vector3 contactPoint = collision.contacts[0].point;
         Vector3 center = collision.collider.bounds.center;
 
         bool right = contactPoint.x > center.x;
-        bool top = contactPoint.y > center.y;
-    }
+        bool top = contactPoint.y > center.y; 
+    } */
 }

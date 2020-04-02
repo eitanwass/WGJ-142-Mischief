@@ -7,27 +7,26 @@ namespace Assets.Scripts
 {
     public class ProgressHandler : MonoBehaviour
     {
-
-        LevelDifficultyInfo[,] levelsInfo;
-        int[,] scoreLog;   ///logs the score achived on each level
+        public static LevelDifficultyInfo[,] levelsInfo;
+        public static int[,] scoreLog;   ///logs the score achived on each level
         public string LevelsInfoRoot;
 
-        readonly Dictionary<AwarenessState, float> awarnessWeight = new Dictionary<AwarenessState, float>
+        public static readonly Dictionary<AwarenessState, float> awarnessWeight = new Dictionary<AwarenessState, float>
         {{AwarenessState.UNAWARE,1 },{AwarenessState.SUSPECTING,-1 },{AwarenessState.AWARE,-2 } };
 
-        int currentLevel, currentNeigh;
-        Timer timer;
-        int giftsCollected;
-        Dictionary<AwarenessState, int> enemiesAlerted;
+        public static int currentLevel, currentNeigh;
+        public static Timer timer;
+        public static int giftsCollected;
+        public static Dictionary<AwarenessState, int> enemiesAlerted;
 
         public ProgressHandler(String LevelsInfoRoot)
         {
             this.LevelsInfoRoot = LevelsInfoRoot;
-            this.timer = new Timer();
-            this.levelsInfo = DataHandler.ReadFromBinaryFile<LevelDifficultyInfo[,]>(LevelsInfoRoot);
-            this.enemiesAlerted = new Dictionary<AwarenessState, int>();
+            timer = new Timer();
+            levelsInfo = DataHandler.ReadFromBinaryFile<LevelDifficultyInfo[,]>(LevelsInfoRoot);
+            enemiesAlerted = new Dictionary<AwarenessState, int>();
             scoreLog = new int[levelsInfo.GetLength(0), levelsInfo.GetLength(1)];
-            //Debug.Log(this.levelsInfo[0, 0].bestTime);
+            //Debug.Log(ProgressHandler.levelsInfo[0, 0].bestTime);
         }
 
         /// <summary>

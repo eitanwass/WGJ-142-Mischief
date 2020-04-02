@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Assets.Scripts;
 
 public class GuardAI : EnemyAI
 { 
@@ -9,7 +9,8 @@ public class GuardAI : EnemyAI
     {
         //TODO get infromation about the level's multipliers and other information
        this.target = GameObject.FindGameObjectWithTag("Player");
-       //this->visionConeAngle = 30f*levelsmultiplier EXAMPLE
+        //this->visionConeAngle = 30f*levelsmultiplier EXAMPLE
+        //Debug.Log(ProgressHandler.levelsInfo[0, 0].bestTime);
     }
 
     void Update()

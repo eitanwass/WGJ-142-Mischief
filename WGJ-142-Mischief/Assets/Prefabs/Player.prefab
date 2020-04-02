@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8184748425660596942}
   - component: {fileID: 8184748425660596930}
   - component: {fileID: 8184748425660596933}
+  - component: {fileID: -2984508978737279044}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -165,7 +166,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: bca143b3f1ab561418468eff103151ee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -297,3 +298,17 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &-2984508978737279044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8184748425660596943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8048a385b21460149b26fb9676a4bb29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useKey: 32
+  text: {fileID: 0}

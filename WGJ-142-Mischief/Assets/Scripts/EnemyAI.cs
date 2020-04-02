@@ -48,19 +48,22 @@ public abstract class EnemyAI : MonoBehaviour
         {
             if (IsEnemyInRange())
             {
-                RaycastHit2D hit = Physics2D.Raycast(this.transform.position, direction, visionConeLength);
+                RaycastHit2D[] hits = Physics2D.RaycastAll(this.transform.position, direction, visionConeLength);
 
-                if (hit.collider != null)
+                foreach (var hit in hits)
                 {
-                    Debug.DrawLine(transform.position, hit.point);
+                    if (hit.collider != null)
+                    {
+                        Debug.DrawLine(transform.position, hit.point);
 
-                    if (hit.collider.CompareTag("Player"))
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        Debug.Log(hit.collider.name);
+                        if (hit.collider.CompareTag("Player"))
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            Debug.Log(hit.collider.name);
+                        }
                     }
                 }
             }

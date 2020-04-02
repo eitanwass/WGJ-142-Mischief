@@ -55,6 +55,9 @@ public class EnemyPathfinder : MonoBehaviour
         if (path == null)
             return;
 
+        if (PauseMenu.isPaused)
+            return;
+
         if (currentWaypoint >= path.vectorPath.Count)
         {
             OnPathCompleteEvent?.Invoke(this, new EventArgs());
@@ -64,7 +67,8 @@ public class EnemyPathfinder : MonoBehaviour
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
         Vector2 force = direction * speed * Time.deltaTime;
 
-        rb.AddForce(force);
+        rb.MovePosition((Vector2)transform.position + force);
+        //rb.AddForce(force);
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
 
@@ -74,14 +78,6 @@ public class EnemyPathfinder : MonoBehaviour
         }
 
         // Turning left and right
-        float scaleX = transform.localScale.x, scaleY = transform.localScale.y;
-        if (direction.x > 0)
-        {
-            transform.localScale = new Vector3(Mathf.Abs(scaleX), scaleY);
-        }
-        else
-        {
-            transform.localScale = new Vector3(-Mathf.Abs(scaleX), scaleY);
-        }
+        transform.localScale = new Vector3(Mathf.Sign(force.x), 1, 1);
     }
 }

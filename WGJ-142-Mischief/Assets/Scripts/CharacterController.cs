@@ -11,6 +11,7 @@ public class CharacterController : MonoBehaviour
     public float runningSpeed = 5;
 
     private float speed;
+    private Animator animator;
 
 
     private Vector3 mousePosition;
@@ -20,6 +21,7 @@ public class CharacterController : MonoBehaviour
     {
         mainCam = Camera.main;
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
 
@@ -32,11 +34,18 @@ public class CharacterController : MonoBehaviour
     private void FixedUpdate()
     {
         if (!PauseMenu.isPaused)
-            HandleMovement();
+        {
+            Vector2 velocity = HandleMovement();
+            animator.SetBool("Moving", velocity != Vector2.zero);
+            animator.SetBool("Up", velocity.y > 0);
+            transform.localScale = new Vector3(Mathf.Sign(velocity.x), 1, 1);
+        }
+
+        
     }
 
 
-    private void HandleMovement()
+    private Vector2 HandleMovement()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
@@ -44,8 +53,9 @@ public class CharacterController : MonoBehaviour
         if (horizontal == 0 && vertical == 0)
         {
             // Not moving
+            animator.SetBool("Moving", false);
+            return Vector2.zero;
         }
-
         else
         {
             if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && StaminaBar.instance.getStamina() > 0)
@@ -55,12 +65,14 @@ public class CharacterController : MonoBehaviour
             }
             else
                 speed = walkingSpeed;
-        }
-        Vector2 velocity = new Vector2(horizontal, vertical);
-        velocity.Normalize();
-        velocity *= speed;
 
-        rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
+            Vector2 velocity = new Vector2(horizontal, vertical);
+            velocity.Normalize();
+            velocity *= speed;
+
+            rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
+            return velocity;
+        }
     }
 
     /*
